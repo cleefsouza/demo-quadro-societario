@@ -70,7 +70,9 @@ class EmpresaController extends AbstractController {
      */
     public function all() : Response {
         $empresas = $this->repository->findAll();
-        return new JsonResponse($empresas);
+        $statusCode = empty($empresas) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
+
+        return new JsonResponse($empresas, $statusCode);
     }
 
     /**

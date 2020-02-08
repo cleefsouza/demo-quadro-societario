@@ -59,17 +59,157 @@ php bin\console doctrine:migrations:migrate
 php -S localhost:8080 -t public
 ```
 
-#### Requisições
+#### Rest Client
 * Execute o `Insomnia`
 * Siga o menu `Application > Preferences > Data > Import Data > From URL`, adicione a URL abaixo e clique em `Fetch and Import`
 ```
 https://gitlab.com/cleefsouza/app-quadro-societario/-/tree/master/api-rest
 ```
 
-## Deploy
+#### Empresa
 
-...
+##### POST
+* Inserir empresa 
+```json
+URL: localhost:8080/empresa
+Request Body:
+{
+    "razaoSocial": "Exemplo Tecnologia LTDA",
+    "nomeFantasia": "Ex Tecnologia",
+    "cnpj": "12345678910000",
+    "atividadePrincipal": "Desenvolvimento de programas e software",
+    "dataAbertura": "2020-02-08",
+    "situacaoCadastral": true
+}
+```
 
+##### GET
+* Buscar empresa por `id`
+```json
+URL: localhost:8080/empresa/1
+Response Body:
+{
+    "id" : 1,
+    "razaoSocial": "Exemplo Tecnologia LTDA",
+    "nomeFantasia": "Ex Tecnologia",
+    "cnpj": "12345678910000",
+    "atividadePrincipal": "Desenvolvimento de programas e software",
+    "dataAbertura": "08/02/2020",
+    "situacaoCadastral": true
+}
+```
 
+* Buscar todas as empresas
+```json
+URL: localhost:8080/empresas
+Response Body:
+{
+    "id" : 1,
+    "razaoSocial": "Exemplo Tecnologia LTDA",
+    "nomeFantasia": "Ex Tecnologia",
+    "cnpj": "12345678910000",
+    "atividadePrincipal": "Desenvolvimento de programas e software",
+    "dataAbertura": "08/02/2020",
+    "situacaoCadastral": true
+},
+{
+    ...
+}
+```
+
+##### PUT
+* Alterar empresa por `id`
+```json
+URL: localhost:8080/empresa/1
+Request Body:
+{
+    "razaoSocial": "Exemplo Tecnologia LTDA",
+    "nomeFantasia": "Ex Tech",
+    "cnpj": "12345678911111",
+    "atividadePrincipal": "Desenvolvimento de software",
+    "dataAbertura": "2020-02-08",
+    "situacaoCadastral": false
+}
+```
+
+##### DELETE
+* Deletar empresa por `id`
+```json
+URL: localhost:8080/empresa/1
+Response Body: ""
+```
+
+#### Sócio
+
+##### POST
+* Inserir sócio 
+```json
+URL: localhost:8080/socio
+Request Body:
+{
+    "nomeCompleto" : "Exemplo da Silva",
+    "cpf" : "12345678910",
+    "email" : "ex_silva@gmail.com",
+    "sexo" : "Masculino",
+    "nascimento" : "1995-07-03",
+    "empresaId" : 1
+}
+```
+
+##### GET
+* Buscar socio por `id`
+```json
+URL: localhost:8080/socio/1
+Response Body:
+{
+    "id" : 1,
+    "nomeCompleto" : "Exemplo da Silva",
+    "cpf" : "12345678910",
+    "email" : "ex_silva@gmail.com",
+    "sexo" : "Masculino",
+    "nascimento" : "03/07/1995",
+    "empresaId" : 1
+}
+```
+
+* Buscar todos os sócios
+```json
+URL: localhost:8080/socios
+Response Body:
+{
+    "id" : 1,
+    "nomeCompleto" : "Exemplo da Silva",
+    "cpf" : "12345678910",
+    "email" : "ex_silva@gmail.com",
+    "sexo" : "Masculino",
+    "nascimento" : "03/07/1995",
+    "empresaId" : 1
+},
+{
+    ...
+}
+```
+
+##### PUT
+* Alterar sócio por `id`
+```json
+URL: localhost:8080/socio/1
+Request Body:
+{
+    "nomeCompleto" : "Exemplo de Souza",
+    "cpf" : "12345678910",
+    "email" : "ex_souza@hotmail.com",
+    "sexo" : "Masculino",
+    "nascimento" : "1994-07-03",
+    "empresaId" : 1
+}
+```
+
+##### DELETE
+* Deletar sócio por `id`
+```json
+URL: localhost:8080/socio/1
+Response Body: ""
+```
 ## Equipe
   * Aryosvalldo Cleef de Souza - [Linkedin](https://www.linkedin.com/in/aryosvalldo-cleef/)

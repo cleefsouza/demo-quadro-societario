@@ -71,7 +71,9 @@ class SocioController extends AbstractController {
      */
     public function all() : Response {
         $socios = $this->repository->findAll();
-        return new JsonResponse($socios);
+        $statusCode = empty($socios) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
+
+        return new JsonResponse($socios, $statusCode);
     }
 
     /**
