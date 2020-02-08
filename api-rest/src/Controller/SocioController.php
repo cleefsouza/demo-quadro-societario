@@ -116,5 +116,4 @@ class SocioController extends AbstractController {
         $socio = $this->repository->find($id);
         return $socio;
     }
-
 }

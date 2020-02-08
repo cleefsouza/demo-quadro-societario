@@ -34,7 +34,7 @@ class EmpresaService {
         return $empresa;
     }
 
-    public function atualizarEmpresa(int $id, Empresa $empresaAux) : Empresa {
+    public function atualizarEmpresa(int $id, Empresa $empresaAux) : ?Empresa {
 
         $empresa = $this->repository->find($id);
 

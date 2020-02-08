@@ -46,7 +46,7 @@ class SocioService {
         return $socio;
     }
 
-    public function atualizarSocio(int $id, Socio $socioAux) : Socio {
+    public function atualizarSocio(int $id, Socio $socioAux) : ?Socio {
 
         $socio = $this->repository->find($id);
 
@@ -62,5 +62,4 @@ class SocioService {
 
         return $socio;
     }
-
 }
