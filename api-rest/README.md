@@ -61,17 +61,35 @@ php -S localhost:8080 -t public
 
 #### Rest Client
 * Execute o `Insomnia`
-* Siga o menu `Application > Preferences > Data > Import Data > From URL`, adicione a URL abaixo e clique em `Fetch and Import`
+* Siga o menu `Application > Preferences > Data > Import Data > From File`, adicione o arquivo abaixo que está na pasta raiz do projeto e clique em `OK`
 ```
-...
+testes_insomnia_2020-02-08.json
+```
+
+#### Index
+
+##### POST
+* Informações da API
+> URL: git `localhost:8080/`
+<br/> Response Body:
+```json
+{
+    "api": "quadro-societario-api",
+    "versao": "0.1",
+    "descicao": "API Rest para cadastro de empresas e seu quadro de sócios de uma forma simples e prática.",
+    "autor": "Aryosvalldo Cleef de Souza",
+    "repositorio": "https:\/\/gitlab.com\/cleefsouza\/app-quadro-societario",
+    "metodo": "GET",
+    "url": "http:\/\/localhost:8080\/",
+    "content": null
+}
 ```
 
 #### Empresa
 
 ##### POST
-* Inserir empresa 
-
-> URL:` localhost:8080/empresa`
+* Inserir empresa
+> URL: `localhost:8080/empresa`
 <br/> Request Body:
 ```json
 {
