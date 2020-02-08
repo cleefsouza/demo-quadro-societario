@@ -35,18 +35,18 @@ composer install
 #### Configurando Conexão com Banco de Dados
 * No arquivo .env na pasta raiz do projeto adicione a seguinte linha caso não exista (substitua o que estiver dentro dos `[ ]` por suas credenciais)
 ```
-DATABASE_URL=postgresql://[db_user]:[db_password]@127.0.0.1:5432/[db_name]?serverVersion=11&charset=utf8
+DATABASE_URL=postgresql://[db_user]:[db_password]@127.0.0.1:5432/db_quadro_societario?serverVersion=11&charset=utf8
 ```
 
 * Execute o seguinte comando para criar o banco de dados
 ```
-php bin\console doctrine:database:create
+php bin/console doctrine:database:create
 ```
 
 * Execute a migração dos dados mapeados para o banco
 ```
-php bin\console doctrine:migrations:diff
-php bin\console doctrine:migrations:migrate
+php bin/console doctrine:migrations:diff
+php bin/console doctrine:migrations:migrate
 ```
 
 **Obs:** Antes de executar o comando para criar o banco de dados, se estiver no sistema operacional `Windows` atente-se a um ponto. Quando o PHP é instalado, ele `não vem com o PostgreSQL habilitado`. Será necessário buscar o arquivo php.ini-development ou php.ini-production, copiá-lo e colá-lo com o nome php.ini. Se já houver um arquivo php.ini, pode apenas editá-lo sem problemas. Em um editor, pressione `Ctrl + F` e busque por `pdo_pgsql`. Você encontrará a linha `;extension=pdo_pgsql`, que originalmente possui um ponto e vírgula `;` na frente. Remova o `;` e salve a sua alteração usando `Ctrl + S`. Assim a extensão será habilitada
@@ -63,16 +63,17 @@ php -S localhost:8080 -t public
 * Execute o `Insomnia`
 * Siga o menu `Application > Preferences > Data > Import Data > From URL`, adicione a URL abaixo e clique em `Fetch and Import`
 ```
-https://gitlab.com/cleefsouza/app-quadro-societario/-/tree/master/api-rest
+...
 ```
 
 #### Empresa
 
 ##### POST
 * Inserir empresa 
+
+> URL:` localhost:8080/empresa`
+<br/> Request Body:
 ```json
-URL: localhost:8080/empresa
-Request Body:
 {
     "razaoSocial": "Exemplo Tecnologia LTDA",
     "nomeFantasia": "Ex Tecnologia",
@@ -85,9 +86,9 @@ Request Body:
 
 ##### GET
 * Buscar empresa por `id`
+> URL: `localhost:8080/empresa/1`
+<br/>Response Body:
 ```json
-URL: localhost:8080/empresa/1
-Response Body:
 {
     "id" : 1,
     "razaoSocial": "Exemplo Tecnologia LTDA",
@@ -100,9 +101,9 @@ Response Body:
 ```
 
 * Buscar todas as empresas
+> URL: `localhost:8080/empresas`
+<br/>Response Body:
 ```json
-URL: localhost:8080/empresas
-Response Body:
 {
     "id" : 1,
     "razaoSocial": "Exemplo Tecnologia LTDA",
@@ -119,9 +120,9 @@ Response Body:
 
 ##### PUT
 * Alterar empresa por `id`
+> URL: `localhost:8080/empresa/1`
+<br/>Request Body:
 ```json
-URL: localhost:8080/empresa/1
-Request Body:
 {
     "razaoSocial": "Exemplo Tecnologia LTDA",
     "nomeFantasia": "Ex Tech",
@@ -134,18 +135,15 @@ Request Body:
 
 ##### DELETE
 * Deletar empresa por `id`
-```json
-URL: localhost:8080/empresa/1
-Response Body: ""
-```
+> URL: `localhost:8080/empresa/1`
 
 #### Sócio
 
 ##### POST
 * Inserir sócio 
+> URL: `localhost:8080/socio`
+<br/>Request Body:
 ```json
-URL: localhost:8080/socio
-Request Body:
 {
     "nomeCompleto" : "Exemplo da Silva",
     "cpf" : "12345678910",
@@ -158,9 +156,9 @@ Request Body:
 
 ##### GET
 * Buscar socio por `id`
+> URL: `localhost:8080/socio/1`
+<br/>Response Body:
 ```json
-URL: localhost:8080/socio/1
-Response Body:
 {
     "id" : 1,
     "nomeCompleto" : "Exemplo da Silva",
@@ -173,9 +171,9 @@ Response Body:
 ```
 
 * Buscar todos os sócios
+> URL: `localhost:8080/socios`
+<br/>Response Body:
 ```json
-URL: localhost:8080/socios
-Response Body:
 {
     "id" : 1,
     "nomeCompleto" : "Exemplo da Silva",
@@ -192,9 +190,9 @@ Response Body:
 
 ##### PUT
 * Alterar sócio por `id`
+> URL: `localhost:8080/socio/1`
+<br/>Request Body:
 ```json
-URL: localhost:8080/socio/1
-Request Body:
 {
     "nomeCompleto" : "Exemplo de Souza",
     "cpf" : "12345678910",
@@ -207,9 +205,7 @@ Request Body:
 
 ##### DELETE
 * Deletar sócio por `id`
-```json
-URL: localhost:8080/socio/1
-Response Body: ""
-```
+> URL: `localhost:8080/socio/1`
+
 ## Equipe
   * Aryosvalldo Cleef de Souza - [Linkedin](https://www.linkedin.com/in/aryosvalldo-cleef/)
