@@ -27,7 +27,7 @@ git clone https://gitlab.com/cleefsouza/app-quadro-societario.git
 cd app-quadro-societario/api-rest
 ```
 
-* Instale as bibliotecas do projeto contidas no arquivo `composer.lock`
+* Instale as bibliotecas do projeto
 ```
 composer install
 ```
