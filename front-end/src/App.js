@@ -5,9 +5,8 @@ import './App.css';
 function App() {
 	return (
 		<div className="App container-fluid">
-			<div>
-				<Routes />
-			</div>
+			<h1 className="pt-4">Quadro Societário</h1>
+			<Routes />
 		</div>
 	);
 }

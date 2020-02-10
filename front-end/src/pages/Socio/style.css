@@ -1,0 +1,19 @@
+label {
+  font-weight: bold;
+}
+
+.form-socio {
+  width: 50%;
+}
+
+@media screen and (max-width: 900px) {
+  .form-socio {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .form-socio {
+    width: 100%;
+  }
+}

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import api from '../../services/api';
 import StringMask from 'string-mask';
 
-export default function Dashboard() {
+export default function Dashboard({ history }) {
     const [empresas, setEmpresas] = useState([]);
     const cnpjMask = new StringMask('00.000.000/0000-00');
 
@@ -23,10 +23,19 @@ export default function Dashboard() {
         return value
     }
 
+    function handleNovaEmpresa() {
+        history.push("/empresa");
+    }
+
+    function handleNovoSocio() {
+        history.push("/socio");
+    }
+
     return (
         <>
-            <h1 className="pt-3">Quadro Societário</h1>
-            <p className="text-danger small">
+            <button type="button" className="btn btn-primary mr-2" onClick={handleNovaEmpresa}>Nova Empresa</button>
+            <button type="button" className="btn btn-primary" onClick={handleNovoSocio}>Novo Sócio</button>
+            <p className="text-danger small mt-3">
                 * Clique no card da empresa desejada para uma visão mais detalhada.
             </p>
             <div className="contanier-fluid container-cards d-flex flex-row flex-wrap">
@@ -49,7 +58,7 @@ export default function Dashboard() {
                                 <label>
                                     <strong>Situação Cadastral:</strong>
                                     <span className="badge badge-dark ml-1">
-                                        {empresa.situacaoCadastral === true ? 'Ativa' : 'Desativada'}
+                                        {empresa.situacaoCadastral === true ? 'Ativa' : 'Inativa'}
                                     </span>
                                 </label>
                             </div>
