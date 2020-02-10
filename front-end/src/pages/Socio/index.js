@@ -105,10 +105,13 @@ export default function Socio({ history }) {
                         id="sexo"
                         className="form-control"
                         value={sexo}
+                        required
                         onChange={event => setSexo(event.target.value)}
                     >
+                        <option value="" disabled>Selecione ...</option>
                         <option value={"Masculino"}>Masculino</option>
                         <option value={"Feminino"}>Feminino</option>
+                        <option value={"Outro"}>Outro</option>
                     </select>
                 </div>
 
@@ -122,6 +125,7 @@ export default function Socio({ history }) {
                         required
                         onChange={event => setEmpresaId(event.target.value)}
                     >
+                        <option value="" disabled>Selecione ...</option>
                         {
                             selectEmpresas.map(empresa => (
                                 <option key={empresa.id} value={empresa.id}>{empresa.nomeFantasia}</option>

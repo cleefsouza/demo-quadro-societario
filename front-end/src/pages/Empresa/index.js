@@ -111,6 +111,7 @@ export default function Empresa({ history }) {
                         required
                         onChange={event => setSituacao(event.target.value)}
                     >
+                        <option value="" disabled>Selecione ...</option>
                         <option value={true}>ATIVA</option>
                         <option value={false}>INATIVA</option>
                     </select>

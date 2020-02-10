@@ -10,7 +10,9 @@ export default function Dashboard({ history }) {
     useEffect(() => {
         async function loadEmpresas() {
             const response = await api.get('/empresas');
-            setEmpresas(response.data);
+            if (response.status !== 204) {
+                setEmpresas(response.data);
+            }
         }
 
         loadEmpresas();
@@ -33,7 +35,8 @@ export default function Dashboard({ history }) {
     }
 
     function handleDetalhesEmpresa(id) {
-        history.push("/detalhes");
+        localStorage.setItem('id', id);
+        history.push("/detalhes", { id });
     }
 
     function handleDeleteEmpresa(id) {
