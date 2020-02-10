@@ -206,6 +206,24 @@ testes_insomnia_2020-02-08.json
 }
 ```
 
+* Buscar todos os sócios de uma determinada empresa
+> URL: `localhost:8080/socios/empresa/1`
+<br/>Response Body:
+```json
+{
+    "id" : 1,
+    "nomeCompleto" : "Exemplo da Silva",
+    "cpf" : "12345678910",
+    "email" : "ex_silva@gmail.com",
+    "sexo" : "Masculino",
+    "nascimento" : "03/07/1995",
+    "empresaId" : 1
+},
+{
+    ...
+}
+```
+
 ##### PUT
 * Alterar sócio por `id`
 > URL: `localhost:8080/socio/1`

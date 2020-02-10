@@ -111,11 +111,30 @@ class SocioController extends AbstractController {
     }
 
     /**
+     * @Route("/socios/empresa/{id}", methods={"GET"})
+     */
+    public function socioPorEmpresa(int $id) : Response {
+        $socios = $this->getSocioPorEmpresa($id);
+        $statusCode = empty($socios) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
+
+        return new JsonResponse($socios, $statusCode);
+    }
+
+    /**
      * @param int $id
      * @return Socio|object|null
      */
     public function getSocio(int $id) {
         $socio = $this->repository->find($id);
         return $socio;
+    }
+
+    /**
+     * @param int $empresaId
+     * @return Socio|object|null
+     */
+    public function getSocioPorEmpresa(int $empresaId) {
+        $socios = $this->repository->buscarPorEmpresa($empresaId);
+        return $socios;
     }
 }
