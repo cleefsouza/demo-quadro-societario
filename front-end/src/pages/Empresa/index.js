@@ -117,8 +117,8 @@ export default function Empresa({ history }) {
                 </div>
 
                 <div className="form-group">
-                    <button type="submit" className="btn btn-success">Confirmar</button>
-                    <button type="button" onClick={handleCancelar} className="btn btn-danger ml-2">Cancelar</button>
+                    <button type="submit" className="btn btn-outline-success">Confirmar</button>
+                    <button type="button" onClick={handleCancelar} className="btn btn-outline-danger ml-2">Cancelar</button>
                 </div>
             </form>
         </div>

@@ -1,0 +1,39 @@
+.card {
+  cursor: pointer;
+  height: 260px;
+  width: 233px;
+  margin: 0.5em;
+}
+
+@media screen and (max-width: 961px) {
+  .container-cards {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .container-cards {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container-fluid {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .card {
+    width: 100%;
+  }
+}
