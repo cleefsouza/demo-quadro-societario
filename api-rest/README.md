@@ -248,5 +248,8 @@ testes_insomnia_2020-02-08.json
 * Deletar sócio por `id`
 > URL: `localhost:8080/socio/1`
 
-## Equipe
-  * Aryosvalldo Cleef de Souza - [Linkedin](https://www.linkedin.com/in/aryosvalldo-cleef/)
+### Autor <div id="autor"></div>
+Aryosvalldo Cleef ─ [linkedin](https://www.linkedin.com/in/aryosvalldo-cleef/) ─ [@cleefsouza](https://github.com/cleefsouza)
+
+### Meta <div id="meta"></div>
+Made with 💚 by **Cleef Souza**
