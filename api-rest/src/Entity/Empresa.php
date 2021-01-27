@@ -19,9 +19,9 @@ class Empresa implements \JsonSerializable
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @var int
+     * @var int|null
      */
-    private int $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", nullable=false)
@@ -79,7 +79,7 @@ class Empresa implements \JsonSerializable
      * @param $razaoSocial
      * @return $this
      */
-    public function setRazaoSocial($razaoSocial): self
+    public function setRazaoSocial(string $razaoSocial): self
     {
         $this->razaoSocial = $razaoSocial;
 
@@ -98,7 +98,7 @@ class Empresa implements \JsonSerializable
      * @param $nomeFantasia
      * @return $this
      */
-    public function setNomeFantasia($nomeFantasia): self
+    public function setNomeFantasia(string $nomeFantasia): self
     {
         $this->nomeFantasia = $nomeFantasia;
 
@@ -117,7 +117,7 @@ class Empresa implements \JsonSerializable
      * @param $atividadePrincipal
      * @return $this
      */
-    public function setAtividadePrincipal($atividadePrincipal): self
+    public function setAtividadePrincipal(string $atividadePrincipal): self
     {
         $this->atividadePrincipal = $atividadePrincipal;
 
@@ -136,7 +136,7 @@ class Empresa implements \JsonSerializable
      * @param $cnpj
      * @return $this
      */
-    public function setCnpj($cnpj): self
+    public function setCnpj(string $cnpj): self
     {
         $this->cnpj = $cnpj;
 
@@ -155,7 +155,7 @@ class Empresa implements \JsonSerializable
      * @param $situacaoCadastral
      * @return $this
      */
-    public function setSituacaoCadastral($situacaoCadastral): self
+    public function setSituacaoCadastral(bool $situacaoCadastral): self
     {
         $this->situacaoCadastral = $situacaoCadastral;
 
@@ -174,7 +174,7 @@ class Empresa implements \JsonSerializable
      * @param $dataAbertura
      * @return $this
      */
-    public function setDataAbertura($dataAbertura): self
+    public function setDataAbertura(DateTime $dataAbertura): self
     {
         $this->dataAbertura = $dataAbertura;
 

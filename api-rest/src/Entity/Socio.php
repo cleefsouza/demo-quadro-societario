@@ -80,7 +80,7 @@ class Socio implements \JsonSerializable
      * @param $nomeCompleto
      * @return $this
      */
-    public function setNomeCompleto($nomeCompleto): self
+    public function setNomeCompleto(string $nomeCompleto): self
     {
         $this->nomeCompleto = $nomeCompleto;
 
@@ -99,7 +99,7 @@ class Socio implements \JsonSerializable
      * @param $cpf
      * @return $this
      */
-    public function setCpf($cpf): self
+    public function setCpf(string $cpf): self
     {
         $this->cpf = $cpf;
 
@@ -118,7 +118,7 @@ class Socio implements \JsonSerializable
      * @param $email
      * @return $this
      */
-    public function setEmail($email): self
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -137,7 +137,7 @@ class Socio implements \JsonSerializable
      * @param $nascimento
      * @return $this
      */
-    public function setNascimento($nascimento): self
+    public function setNascimento(DateTime $nascimento): self
     {
         $this->nascimento = $nascimento;
 
@@ -156,7 +156,7 @@ class Socio implements \JsonSerializable
      * @param $sexo
      * @return $this
      */
-    public function setSexo($sexo): self
+    public function setSexo(string $sexo): self
     {
         $this->sexo = $sexo;
 

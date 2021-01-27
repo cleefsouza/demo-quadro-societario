@@ -25,9 +25,9 @@ class SocioRepository extends ServiceEntityRepository
 
     /**
      * @param int $empresaId
-     * @return int|mixed|string
+     * @return array
      */
-    public function buscarPorEmpresa(int $empresaId)
+    public function buscarPorEmpresa(int $empresaId): array
     {
         $entityManager = $this->getEntityManager();
         $query = $entityManager

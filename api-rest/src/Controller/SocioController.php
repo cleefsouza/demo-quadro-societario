@@ -154,9 +154,9 @@ class SocioController extends AbstractController
 
     /**
      * @param int $empresaId
-     * @return Socio|null
+     * @return array
      */
-    public function getSocioPorEmpresa(int $empresaId): ?Socio
+    public function getSocioPorEmpresa(int $empresaId): array
     {
         return $this->repository->buscarPorEmpresa($empresaId);
     }
