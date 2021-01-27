@@ -75,6 +75,8 @@ cd app-quadro-societario/front-end
   npm start
   ```
 
-## Equipe
+### Autor <div id="autor"></div>
+Aryosvalldo Cleef ─ [linkedin](https://www.linkedin.com/in/aryosvalldo-cleef/) ─ [@cleefsouza](https://github.com/cleefsouza)
 
-- Aryosvalldo Cleef de Souza - [Linkedin](https://www.linkedin.com/in/aryosvalldo-cleef/)
+### Meta <div id="meta"></div>
+Made with 💚 by **Cleef Souza**
