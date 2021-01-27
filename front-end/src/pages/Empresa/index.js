@@ -13,7 +13,7 @@ export default function Empresa({ history }) {
     async function handleSubmit(event) {
         event.preventDefault();
 
-        let situacaoCadastral = situacao === 1 ? true : false;
+        let situacaoCadastral = situacao === "true";
 
         await api.post('/empresa', {
             razaoSocial,

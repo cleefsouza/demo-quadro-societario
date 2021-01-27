@@ -51,7 +51,7 @@ export default function Dashboard({ history }) {
     return (
         <>
             <button type="button" className="btn btn-outline-primary mr-2" onClick={handleNovaEmpresa}>Nova Empresa</button>
-            <button type="button" className="btn btn-outline-primary" onClick={handleNovoSocio}>Novo Sócio</button>
+            <button type="button" className="btn btn-outline-primary" disabled={0 === empresas.length ? true : false} onClick={handleNovoSocio}>Novo Sócio</button>
             <p className="text-danger small mt-3">
                 * Clique no card da empresa desejada para uma visão mais detalhada.
             </p>
@@ -75,7 +75,7 @@ export default function Dashboard({ history }) {
                                 <label>
                                     <strong>Situação Cadastral:</strong>
                                     <span className="badge badge-dark ml-1">
-                                        {empresa.situacaoCadastral === true ? 'Ativa' : 'Inativa'}
+                                        {!empresa.situacaoCadastral ? 'Inativa' : 'Ativa'}
                                     </span>
                                 </label><br />
 
