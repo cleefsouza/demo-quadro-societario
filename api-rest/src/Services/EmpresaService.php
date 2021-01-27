@@ -1,25 +1,40 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Services;
 
-
 use App\Entity\Empresa;
 use App\Repository\EmpresaRepository;
+use Exception;
 
-class EmpresaService {
-
+/**
+ * Class EmpresaService
+ * @package App\Services
+ */
+class EmpresaService
+{
     /**
      * @var EmpresaRepository
      */
-    private $repository;
+    private EmpresaRepository $repository;
 
-    public function __construct (EmpresaRepository $repository) {
+    /**
+     * EmpresaService constructor.
+     * @param EmpresaRepository $repository
+     */
+    public function __construct(EmpresaRepository $repository)
+    {
         $this->repository = $repository;
     }
 
-    public function criarEmpresa(string $json) : Empresa {
-
+    /**
+     * @param string $json
+     * @return Empresa
+     * @throws Exception
+     */
+    public function criarEmpresa(string $json): Empresa
+    {
         $dataJson = json_decode($json);
 
         $empresa = new Empresa();
@@ -34,8 +49,13 @@ class EmpresaService {
         return $empresa;
     }
 
-    public function atualizarEmpresa(int $id, Empresa $empresaAux) : ?Empresa {
-
+    /**
+     * @param int $id
+     * @param Empresa $empresaAux
+     * @return Empresa|null
+     */
+    public function atualizarEmpresa(int $id, Empresa $empresaAux): ?Empresa
+    {
         $empresa = $this->repository->find($id);
 
         if (!is_null($empresa)) {

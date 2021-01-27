@@ -1,35 +1,44 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
-
 
 use App\Entity\Empresa;
 use App\Repository\EmpresaRepository;
 use App\Services\EmpresaService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{JsonResponse, Request, Response};
 use Symfony\Component\Routing\Annotation\Route;
 
-class EmpresaController extends AbstractController {
-
+/**
+ * Class EmpresaController
+ * @package App\Controller
+ */
+class EmpresaController extends AbstractController
+{
     /**
      * @var EntityManagerInterface
      */
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     /**
      * @var EmpresaService
      */
-    private $empresaService;
+    private EmpresaService $empresaService;
+
     /**
      * @var EmpresaRepository
      */
-    private $repository;
+    private EmpresaRepository $repository;
 
+    /**
+     * EmpresaController constructor.
+     * @param EntityManagerInterface $entityManager
+     * @param EmpresaService $empresaService
+     * @param EmpresaRepository $repository
+     */
     public function __construct(
         EntityManagerInterface $entityManager,
         EmpresaService $empresaService,
@@ -42,9 +51,11 @@ class EmpresaController extends AbstractController {
 
     /**
      * @Route("/empresa", methods={"POST"})
+     * @param Request $request
+     * @return Response
      */
-    public function create(Request $request) : Response {
-
+    public function create(Request $request): Response
+    {
         $body = $request->getContent();
         $empresa = $this->empresaService->criarEmpresa($body);
 
@@ -56,9 +67,11 @@ class EmpresaController extends AbstractController {
 
     /**
      * @Route("/empresa/{id}", methods={"GET"})
+     * @param int $id
+     * @return Response
      */
-    public function read(int $id) : Response {
-
+    public function read(int $id): Response
+    {
         $empresa = $this->getEmpresa($id);
         $statusCode = is_null($empresa) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
 
@@ -67,8 +80,10 @@ class EmpresaController extends AbstractController {
 
     /**
      * @Route("/empresas", methods={"GET"})
+     * @return Response
      */
-    public function all() : Response {
+    public function all(): Response
+    {
         $empresas = $this->repository->findAll();
         $statusCode = empty($empresas) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
 
@@ -77,9 +92,12 @@ class EmpresaController extends AbstractController {
 
     /**
      * @Route("/empresa/{id}", methods={"PUT"})
+     * @param int $id
+     * @param Request $request
+     * @return Response
      */
-    public function update(int $id, Request $request) : Response {
-
+    public function update(int $id, Request $request): Response
+    {
         $body = $request->getContent();
         $empresaAux = $this->empresaService->criarEmpresa($body);
         $empresa = $this->empresaService->atualizarEmpresa($id, $empresaAux);
@@ -95,8 +113,11 @@ class EmpresaController extends AbstractController {
 
     /**
      * @Route("/empresa/{id}", methods={"DELETE"})
+     * @param int $id
+     * @return Response
      */
-    public function delete(int $id) : Response {
+    public function delete(int $id): Response
+    {
         $empresa = $this->getEmpresa($id);
 
         if (is_null($empresa)) {
@@ -111,10 +132,10 @@ class EmpresaController extends AbstractController {
 
     /**
      * @param int $id
-     * @return Empresa|object|null
+     * @return Empresa|null
      */
-    public function getEmpresa(int $id) {
-        $empresa = $this->repository->find($id);
-        return $empresa;
+    public function getEmpresa(int $id): ?Empresa
+    {
+        return $this->repository->find($id);
     }
 }

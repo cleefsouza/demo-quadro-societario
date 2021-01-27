@@ -1,36 +1,44 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Controller;
-
 
 use App\Entity\Socio;
 use App\Repository\SocioRepository;
 use App\Services\SocioService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\{JsonResponse, Request, Response};
 use Symfony\Component\Routing\Annotation\Route;
 
-class SocioController extends AbstractController {
-
+/**
+ * Class SocioController
+ * @package App\Controller
+ */
+class SocioController extends AbstractController
+{
     /**
      * @var EntityManagerInterface
      */
-    private $entityManager;
+    private EntityManagerInterface $entityManager;
 
     /**
      * @var SocioRepository
      */
-    private $repository;
+    private SocioRepository $repository;
 
     /**
      * @var SocioService
      */
-    private $socioService;
+    private SocioService $socioService;
 
+    /**
+     * SocioController constructor.
+     * @param EntityManagerInterface $entityManager
+     * @param SocioService $socioService
+     * @param SocioRepository $repository
+     */
     public function __construct(
         EntityManagerInterface $entityManager,
         SocioService $socioService,
@@ -43,9 +51,11 @@ class SocioController extends AbstractController {
 
     /**
      * @Route("/socio", methods={"POST"})
+     * @param Request $request
+     * @return Response
      */
-    public function create(Request $request) : Response {
-
+    public function create(Request $request): Response
+    {
         $body = $request->getContent();
         $socio = $this->socioService->criarSocio($body);
 
@@ -57,9 +67,11 @@ class SocioController extends AbstractController {
 
     /**
      * @Route("/socio/{id}", methods={"GET"})
+     * @param int $id
+     * @return Response
      */
-    public function read(int $id) : Response {
-
+    public function read(int $id): Response
+    {
         $socio = $this->getSocio($id);
         $statusCode = is_null($socio) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
 
@@ -68,8 +80,10 @@ class SocioController extends AbstractController {
 
     /**
      * @Route("/socios", methods={"GET"})
+     * @return Response
      */
-    public function all() : Response {
+    public function all(): Response
+    {
         $socios = $this->repository->findAll();
         $statusCode = empty($socios) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
 
@@ -78,9 +92,12 @@ class SocioController extends AbstractController {
 
     /**
      * @Route("/socio/{id}", methods={"PUT"})
+     * @param int $id
+     * @param Request $request
+     * @return Response
      */
-    public function update(int $id, Request $request) : Response {
-
+    public function update(int $id, Request $request): Response
+    {
         $body = $request->getContent();
         $socioAux = $this->socioService->criarSocio($body);
         $socio = $this->socioService->atualizarSocio($id, $socioAux);
@@ -96,8 +113,11 @@ class SocioController extends AbstractController {
 
     /**
      * @Route("/socio/{id}", methods={"DELETE"})
+     * @param int $id
+     * @return Response
      */
-    public function delete(int $id) : Response {
+    public function delete(int $id): Response
+    {
         $socio = $this->getSocio($id);
 
         if (is_null($socio)) {
@@ -112,8 +132,11 @@ class SocioController extends AbstractController {
 
     /**
      * @Route("/socios/empresa/{id}", methods={"GET"})
+     * @param int $id
+     * @return Response
      */
-    public function socioPorEmpresa(int $id) : Response {
+    public function socioPorEmpresa(int $id): Response
+    {
         $socios = $this->getSocioPorEmpresa($id);
         $statusCode = empty($socios) ? Response::HTTP_NO_CONTENT : Response::HTTP_OK;
 
@@ -122,19 +145,19 @@ class SocioController extends AbstractController {
 
     /**
      * @param int $id
-     * @return Socio|object|null
+     * @return Socio|null
      */
-    public function getSocio(int $id) {
-        $socio = $this->repository->find($id);
-        return $socio;
+    public function getSocio(int $id): ?Socio
+    {
+        return $this->repository->find($id);
     }
 
     /**
      * @param int $empresaId
-     * @return Socio|object|null
+     * @return Socio|null
      */
-    public function getSocioPorEmpresa(int $empresaId) {
-        $socios = $this->repository->buscarPorEmpresa($empresaId);
-        return $socios;
+    public function getSocioPorEmpresa(int $empresaId): ?Socio
+    {
+        return $this->repository->buscarPorEmpresa($empresaId);
     }
 }

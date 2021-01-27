@@ -36,6 +36,8 @@ composer install
 * No arquivo .env na pasta raiz do projeto adicione a seguinte linha caso não exista (substitua o que estiver dentro dos `[ ]` por suas credenciais)
 ```
 DATABASE_URL=postgresql://[db_user]:[db_password]@127.0.0.1:5432/db_quadro_societario?serverVersion=11&charset=utf8
+# ou
+DATABASE_URL="sqlite:///%kernel.project_dir%/var/data.db"
 ```
 
 * Execute o seguinte comando para criar o banco de dados
@@ -46,7 +48,10 @@ php bin/console doctrine:database:create
 * Execute a migração dos dados mapeados para o banco
 ```
 php bin/console doctrine:migrations:diff
-php bin/console doctrine:migrations:migrate
+
+php bin/console doctrine:migrations:migrate VERSAO_ATUAL
+# ou
+php bin/console doctrine:migrations:execute VERSAO_ATUAL
 ```
 
 **Obs:** Antes de executar o comando para criar o banco de dados, se estiver no sistema operacional `Windows` atente-se a um ponto. Quando o PHP é instalado, ele `não vem com o PostgreSQL habilitado`. Será necessário buscar o arquivo php.ini-development ou php.ini-production, copiá-lo e colá-lo com o nome php.ini. Se já houver um arquivo php.ini, pode apenas editá-lo sem problemas. Em um editor, pressione `Ctrl + F` e busque por `pdo_pgsql`. Você encontrará a linha `;extension=pdo_pgsql`, que originalmente possui um ponto e vírgula `;` na frente. Remova o `;` e salve a sua alteração usando `Ctrl + S`. Assim a extensão será habilitada

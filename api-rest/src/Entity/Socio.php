@@ -1,111 +1,192 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
+ * Class Socio
+ * @package App\Entity
  */
-class Socio implements \JsonSerializable {
+class Socio implements \JsonSerializable
+{
 
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", nullable=false)
+     * @var string
      */
-    private $nomeCompleto;
+    private string $nomeCompleto;
 
     /**
      * @ORM\Column(type="string", unique=true, nullable=false)
+     * @var string
      */
-    private $cpf;
+    private string $cpf;
 
     /**
      * @ORM\Column(type="string")
+     * @var string
      */
-    private $email;
+    private string $email;
 
     /**
      * @ORM\Column(type="date")
+     * @var DateTime
      */
-    private $nascimento;
+    private DateTime $nascimento;
 
     /**
      * @ORM\Column(type="string")
+     * @var string
      */
-    private $sexo;
+    private string $sexo;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Empresa")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
+     * @var Empresa
      */
-    private $empresa;
+    private Empresa $empresa;
 
-    public function getId() : ?int {
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getNomeCompleto() : ?string {
+    /**
+     * @return string|null
+     */
+    public function getNomeCompleto(): ?string
+    {
         return $this->nomeCompleto;
     }
 
-    public function setNomeCompleto($nomeCompleto) : self {
+    /**
+     * @param $nomeCompleto
+     * @return $this
+     */
+    public function setNomeCompleto($nomeCompleto): self
+    {
         $this->nomeCompleto = $nomeCompleto;
+
         return $this;
     }
 
-    public function getCpf() : ?string {
+    /**
+     * @return string|null
+     */
+    public function getCpf(): ?string
+    {
         return $this->cpf;
     }
 
-    public function setCpf($cpf) : self {
+    /**
+     * @param $cpf
+     * @return $this
+     */
+    public function setCpf($cpf): self
+    {
         $this->cpf = $cpf;
+
         return $this;
     }
 
-    public function getEmail() : ?string {
+    /**
+     * @return string|null
+     */
+    public function getEmail(): ?string
+    {
         return $this->email;
     }
 
-    public function setEmail($email) : self {
+    /**
+     * @param $email
+     * @return $this
+     */
+    public function setEmail($email): self
+    {
         $this->email = $email;
+
         return $this;
     }
 
-    public function getNascimento() : ?\DateTime {
+    /**
+     * @return DateTime|null
+     */
+    public function getNascimento(): ?DateTime
+    {
         return $this->nascimento;
     }
 
-    public function setNascimento($nascimento) : self {
+    /**
+     * @param $nascimento
+     * @return $this
+     */
+    public function setNascimento($nascimento): self
+    {
         $this->nascimento = $nascimento;
+
         return $this;
     }
 
-    public function getSexo() : ?string {
+    /**
+     * @return string|null
+     */
+    public function getSexo(): ?string
+    {
         return $this->sexo;
     }
 
-    public function setSexo($sexo) : self {
+    /**
+     * @param $sexo
+     * @return $this
+     */
+    public function setSexo($sexo): self
+    {
         $this->sexo = $sexo;
+
         return $this;
     }
 
-    public function getEmpresa() : ?Empresa {
+    /**
+     * @return Empresa|null
+     */
+    public function getEmpresa(): ?Empresa
+    {
         return $this->empresa;
     }
 
-    public function setEmpresa(?Empresa $empresa) : self{
+    /**
+     * @param Empresa|null $empresa
+     * @return $this
+     */
+    public function setEmpresa(?Empresa $empresa): self
+    {
         $this->empresa = $empresa;
+
         return $this;
     }
 
-    public function jsonSerialize() {
+    /**
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
         return [
             "id" => $this->getId(),
             "nomeCompleto" => $this->getNomeCompleto(),

@@ -1,111 +1,191 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity()
+ * Class Empresa
+ * @package App\Entity
  */
-class Empresa implements \JsonSerializable {
+class Empresa implements \JsonSerializable
+{
 
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", nullable=false)
+     * @var string
      */
-    private $razaoSocial;
+    private string $razaoSocial;
 
     /**
      * @ORM\Column(type="string")
+     * @var string
      */
-    private $nomeFantasia;
+    private string $nomeFantasia;
 
     /**
      * @ORM\Column(type="string")
+     * @var string
      */
-    private $atividadePrincipal;
+    private string $atividadePrincipal;
 
     /**
      * @ORM\Column(type="string", unique=true)
+     * @var string
      */
-    private $cnpj;
+    private string $cnpj;
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
+     * @var bool
      */
-    private $situacaoCadastral;
+    private bool $situacaoCadastral;
 
     /**
      * @ORM\Column(type="date")
+     * @var DateTime
      */
-    private $dataAbertura;
+    private DateTime $dataAbertura;
 
-    public function getId() : ?int {
+    /**
+     * @return int|null
+     */
+    public function getId(): ?int
+    {
         return $this->id;
     }
 
-    public function getRazaoSocial() : ?string {
+    /**
+     * @return string|null
+     */
+    public function getRazaoSocial(): ?string
+    {
         return $this->razaoSocial;
     }
 
-    public function setRazaoSocial($razaoSocial) : self {
+    /**
+     * @param $razaoSocial
+     * @return $this
+     */
+    public function setRazaoSocial($razaoSocial): self
+    {
         $this->razaoSocial = $razaoSocial;
+
         return $this;
     }
 
-    public function getNomeFantasia() : ?string {
+    /**
+     * @return string|null
+     */
+    public function getNomeFantasia(): ?string
+    {
         return $this->nomeFantasia;
     }
 
-    public function setNomeFantasia($nomeFantasia) : self {
+    /**
+     * @param $nomeFantasia
+     * @return $this
+     */
+    public function setNomeFantasia($nomeFantasia): self
+    {
         $this->nomeFantasia = $nomeFantasia;
+
         return $this;
     }
 
-    public function getAtividadePrincipal() : ?string {
+    /**
+     * @return string|null
+     */
+    public function getAtividadePrincipal(): ?string
+    {
         return $this->atividadePrincipal;
     }
 
-    public function setAtividadePrincipal($atividadePrincipal) : self {
+    /**
+     * @param $atividadePrincipal
+     * @return $this
+     */
+    public function setAtividadePrincipal($atividadePrincipal): self
+    {
         $this->atividadePrincipal = $atividadePrincipal;
+
         return $this;
     }
 
-    public function getCnpj() : ?string {
+    /**
+     * @return string|null
+     */
+    public function getCnpj(): ?string
+    {
         return $this->cnpj;
     }
 
-    public function setCnpj($cnpj) : self {
+    /**
+     * @param $cnpj
+     * @return $this
+     */
+    public function setCnpj($cnpj): self
+    {
         $this->cnpj = $cnpj;
+
         return $this;
     }
 
-    public function getSituacaoCadastral() : ?bool {
+    /**
+     * @return bool|null
+     */
+    public function getSituacaoCadastral(): ?bool
+    {
         return $this->situacaoCadastral;
     }
 
-    public function setSituacaoCadastral($situacaoCadastral) : self {
+    /**
+     * @param $situacaoCadastral
+     * @return $this
+     */
+    public function setSituacaoCadastral($situacaoCadastral): self
+    {
         $this->situacaoCadastral = $situacaoCadastral;
+
         return $this;
     }
 
-    public function getDataAbertura() : ?\DateTime{
+    /**
+     * @return DateTime|null
+     */
+    public function getDataAbertura(): ?DateTime
+    {
         return $this->dataAbertura;
     }
 
-    public function setDataAbertura($dataAbertura) : self {
+    /**
+     * @param $dataAbertura
+     * @return $this
+     */
+    public function setDataAbertura($dataAbertura): self
+    {
         $this->dataAbertura = $dataAbertura;
+
         return $this;
     }
 
-    public function jsonSerialize() {
+    /**
+     * @return array
+     */
+    public function jsonSerialize(): array
+    {
         return [
             "id" => $this->getId(),
             "razaoSocial" => $this->getRazaoSocial(),

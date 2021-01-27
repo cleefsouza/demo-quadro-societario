@@ -1,26 +1,34 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Services;
 
-
 use App\Entity\Socio;
-use App\Entity\Empresa;
-use App\Repository\EmpresaRepository;
-use App\Repository\SocioRepository;
+use App\Repository\{EmpresaRepository, SocioRepository};
+use Exception;
 
-class SocioService {
-
+/**
+ * Class SocioService
+ * @package App\Services
+ */
+class SocioService
+{
     /**
      * @var SocioRepository
      */
-    private $repository;
+    private SocioRepository $repository;
     /**
      * @var EmpresaRepository
      */
-    private $empresaRepository;
+    private EmpresaRepository $empresaRepository;
 
-    public function __construct (
+    /**
+     * SocioService constructor.
+     * @param SocioRepository $repository
+     * @param EmpresaRepository $empresaRepository
+     */
+    public function __construct(
         SocioRepository $repository,
         EmpresaRepository $empresaRepository
     ) {
@@ -28,8 +36,13 @@ class SocioService {
         $this->empresaRepository = $empresaRepository;
     }
 
-    public function criarSocio(string $json) : Socio {
-
+    /**
+     * @param string $json
+     * @return Socio
+     * @throws Exception
+     */
+    public function criarSocio(string $json): Socio
+    {
         $dataJson = json_decode($json);
         $empresaId = $dataJson->empresaId;
         $empresa = $this->empresaRepository->find($empresaId);
@@ -46,8 +59,13 @@ class SocioService {
         return $socio;
     }
 
-    public function atualizarSocio(int $id, Socio $socioAux) : ?Socio {
-
+    /**
+     * @param int $id
+     * @param Socio $socioAux
+     * @return Socio|null
+     */
+    public function atualizarSocio(int $id, Socio $socioAux): ?Socio
+    {
         $socio = $this->repository->find($id);
 
         if (!is_null($socio)) {
